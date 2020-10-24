@@ -3,9 +3,9 @@ import React from "react";
 export default function PastTopics({ pastTopic }) {
     return (
         <>
-            <ul style={{display:'flex', flexDirection:'column', padding:'2rem', backgroundColor:'white', marginBottom:'1rem', borderRadius:'1rem'}}>
+            <ul className="pastTopicContainer">
                 <li>
-                    <ul style={{display:'flex', flexDirection:'row', justifyContent:'space-between', paddingBottom:'1rem'}}>
+                    <ul className="pastToptext">
                         <li>{pastTopic.title}</li>
                         <li>
                             <button>
@@ -14,7 +14,7 @@ export default function PastTopics({ pastTopic }) {
                         </li>
                     </ul>
                 </li>
-                <li style={{textAlign:'center', color:'orangered'}}>
+                <li className="discussedSing">
                     <p>
                         {pastTopic.discussedOn}
                     </p>

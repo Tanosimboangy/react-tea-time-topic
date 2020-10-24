@@ -14,7 +14,7 @@ export default function Main({ topics, setTopics}) {
 	// });
 
     return (
-            <div>
+            <div className="container">
                 <div>
                     <h2>NEXT TOPICS</h2>
                     {nextTopics.map((nextTopic) => {

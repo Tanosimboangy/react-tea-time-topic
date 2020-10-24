@@ -1,3 +1,4 @@
+/* GENERAL STYLES */
 body {
     margin: 0;
     padding: 1rem;
@@ -6,7 +7,15 @@ body {
     font-weight: 400;
     background-color: rgb(100, 100, 205);
 }
+ul {
+    padding: 0;
+    margin: 0;
+}
+li {
+    list-style: none;
+}
 
+/* SPECIFIC STYLES */
 h1 {
     text-align: center;
 }
@@ -15,12 +24,71 @@ h1, h2 {
     color: white;
 }
 
-ul {
-    padding: 0;
-    margin: 0;
+/* CONTAINER */
+.container {
+    max-width: 80%;
+    margin: auto;
 }
-li {
-    list-style: none;
+
+/* NEXT TOPICS */
+.nexttopicContanier {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background-color: white;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+}
+.nexttopicContanier li:first-of-type {
+    padding-bottom: 1rem;
+}
+.nexttopicText ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nexttopicVotes ul li ul li:nth-of-type(2) {
+    color: orangered;
+}
+.nexttopicVotes ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.nexttopicVotes ul li ul {
+    display: flex;
+    flex-direction: row;
+}
+.nexttopicVotes ul li ul li:first-of-type {
+    margin-right: 1rem;
+}
+.nexttopicVotes ul li:nth-of-type(2) ul {
+    display: flex;
+    flex-direction: row;
+}
+.nexttopicVotes ul li:nth-of-type(2) ul li:first-of-type {
+    color: orangered;
+}
+
+/* PAST TOPICS */
+.pastTopicContainer {
+    display: flex;
+    flex-direction: column; 
+    padding: 2rem;
+    background-color: white;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+}
+.pastToptext {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+}
+.discussedSing {
+    text-align: center;
+    color: orangered;
 }
 
 /*# sourceMappingURL=/react-tea-time-topic.9ad09f98.css.map */
