@@ -12,6 +12,8 @@ export default function NextTopics({ nextTopic, topics }) {
     // onClick={handleArchive}
     // }
 
+    console.log(nextTopic);
+
     return (
         <>
             <ul className="nexttopicContanier">

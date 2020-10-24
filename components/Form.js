@@ -4,7 +4,7 @@ export default function Form() {
     // const [addState, setAddState] = useState();
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(e.target.value);
+        
     }
 
     return (

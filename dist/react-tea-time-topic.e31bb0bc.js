@@ -29814,6 +29814,7 @@ function NextTopics({
   // onClick={handleArchive}
   // }
 
+  console.log(nextTopic);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "nexttopicContanier"
   }, /*#__PURE__*/_react.default.createElement("li", {
@@ -29880,10 +29881,15 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function PastTopics({
-  pastTopic
+  pastTopic,
+  pastTopics,
+  setPastTopics
 }) {
-  function handleDelete(e) {
-    console.log(e.currentTarget);
+  console.log(setPastTopics);
+
+  function handleDelete() {
+    const id = pastTopic.id;
+    setPastTopics(pastTopics.filter(past => past.id !== id));
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
@@ -29891,9 +29897,9 @@ function PastTopics({
   }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "pastToptext"
   }, /*#__PURE__*/_react.default.createElement("li", null, pastTopic.title), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
+    id: pastTopic.id,
     onClick: handleDelete
   }, /*#__PURE__*/_react.default.createElement("svg", {
-    onClick: handleDelete,
     xmlns: "http://www.w3.org/2000/svg",
     height: "24",
     fill: "red",
@@ -29924,7 +29930,6 @@ function Form() {
   // const [addState, setAddState] = useState();
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target.value);
   }
 
   return /*#__PURE__*/_react.default.createElement("form", {
@@ -29956,10 +29961,12 @@ var _Form = _interopRequireDefault(require("./Form"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Main({
-  topics
+  topics,
+  pastTopics,
+  setPastTopics,
+  nextTopics,
+  setNextTopics
 }) {
-  let pastTopics = topics.filter(topic => topic.discussedOn);
-  let nextTopics = topics.filter(topic => topic.discussedOn !== "");
   let sortedNextTopics = nextTopics.sort((topicA, topicB) => {
     const ratioA = topicA.upvotes - topicA.downvotes;
     const ratioB = topicB.upvotes - topicB.downvotes;
@@ -29979,7 +29986,9 @@ function Main({
   })), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "PAST TOPICS"), pastTopics.map(pastTopic => {
     return /*#__PURE__*/_react.default.createElement(_PastTopics.default, {
       key: pastTopic.id,
-      pastTopic: pastTopic
+      pastTopic: pastTopic,
+      pastTopics: pastTopics,
+      setPastTopics: setPastTopics
     });
   })));
 }
@@ -30006,6 +30015,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function App() {
   const APIdata = "https://gist.githubusercontent.com/Pinois/93afbc4a061352a0c70331ca4a16bb99/raw/6da767327041de13693181c2cb09459b0a3657a1/topics.json";
   const [topics, setTopics] = (0, _react.useState)([]);
+  const [pastTopics, setPastTopics] = (0, _react.useState)([]);
+  const [nextTopics, setNextTopics] = (0, _react.useState)([]);
 
   const getTopics = async () => {
     try {
@@ -30019,10 +30030,20 @@ function App() {
 
   (0, _react.useEffect)(() => {
     getTopics();
+  }, []);
+  (0, _react.useEffect)(() => {
+    setPastTopics(topics.filter(topic => topic.discussedOn === ""));
+  }, [topics]);
+  (0, _react.useEffect)(() => {
+    setNextTopics(topics.filter(topic => topic.discussedOn !== ""));
   }, [topics]);
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement(_Main.default, {
     topics: topics,
-    setTopics: setTopics
+    setTopics: setTopics,
+    pastTopics: pastTopics,
+    setPastTopics: setPastTopics,
+    nextTopics: nextTopics,
+    setNextTopics: setNextTopics
   })));
 }
 },{"react":"node_modules/react/index.js","./Header":"components/Header.js","./Main":"components/Main.js"}],"index.js":[function(require,module,exports) {
@@ -30065,7 +30086,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49838" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62242" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

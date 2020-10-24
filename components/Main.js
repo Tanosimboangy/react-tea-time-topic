@@ -3,10 +3,12 @@ import NextTopics from './NextTopics.js';
 import PastTopics from './PastTopics.js';
 import Form from './Form';
 
-export default function Main({ topics}) { 
-    let pastTopics = topics.filter(topic => topic.discussedOn);
-    let nextTopics = topics.filter(topic => topic.discussedOn !== "");
-
+export default function Main({ 
+    topics, 
+    pastTopics,
+    setPastTopics,
+    nextTopics,
+    setNextTopics}) {  
     let sortedNextTopics = nextTopics.sort((topicA, topicB) => {
         const ratioA = topicA.upvotes - topicA.downvotes;
         const ratioB = topicB.upvotes - topicB.downvotes;
@@ -23,7 +25,11 @@ export default function Main({ topics}) {
                     <h2>NEXT TOPICS</h2>
                     {sortedNextTopics.map((nextTopic) => {
                         return (
-                            <NextTopics sortedNextTopics={sortedNextTopics} topics={topics} key={nextTopic.id} nextTopic={nextTopic} />
+                            <NextTopics 
+                                sortedNextTopics={sortedNextTopics} 
+                                topics={topics} key={nextTopic.id} 
+                                nextTopic={nextTopic}
+                            />
                         )
                     })}
                 </>
@@ -31,7 +37,13 @@ export default function Main({ topics}) {
                     <h2>PAST TOPICS</h2>
                     {pastTopics.map((pastTopic) => {
                         return (
-                            <PastTopics  key={pastTopic.id} pastTopic={pastTopic} />
+                            <PastTopics  
+                            key={pastTopic.id} 
+                            pastTopic={pastTopic} 
+                            pastTopics={pastTopics}
+                            setPastTopics={setPastTopics}
+                            
+                        />
                         )
                     })}
                 </>
