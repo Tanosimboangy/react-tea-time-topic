@@ -29806,24 +29806,21 @@ function NextTopics({
   topics
 }) {
   const [nextTopicUpvotes, setNextTopicUpvotes] = (0, _react.useState)(nextTopic.upvotes);
-  const [nextTopicDownvotes, setNextTopicDownvotes] = (0, _react.useState)(nextTopic.downvotes);
-  const [nextTopicArchive, setNextTopicArchive] = (0, _react.useState)();
+  const [nextTopicDownvotes, setNextTopicDownvotes] = (0, _react.useState)(nextTopic.downvotes); // const [nextTopicArchive, setNextTopicArchive] = useState();
+  // function handleArchive(e) {
+  //     const id = e.target.id;
+  //     // let nextTopicId = nextTopic.find(el => el.id === id);
+  // onClick={handleArchive}
+  // onClick={handleArchive}
+  // }
 
-  function handleArchive(e) {
-    const id = nextTopic.id;
-    console.log(id);
-    const newPastTopic = setNextTopicArchive(nextTopic.find(past => past.discussedOn === Date.now()));
-    console.log(newPastTopic); // let nextTopicId = nextTopic.find(el => el.id === id);
-    // onClick={handleArchive}
-  }
-
+  console.log(nextTopic);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "nexttopicContanier"
   }, /*#__PURE__*/_react.default.createElement("li", {
     className: "nexttopicText"
   }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, nextTopic.title), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
-    id: nextTopic.id,
-    onClick: handleArchive
+    id: nextTopic.id
   }, /*#__PURE__*/_react.default.createElement("svg", {
     id: nextTopic.id,
     xmlns: "http://www.w3.org/2000/svg",
@@ -29857,7 +29854,7 @@ function NextTopics({
       marginLeft: '1rem'
     }
   }, /*#__PURE__*/_react.default.createElement("button", {
-    onClick: () => setNextTopicDownvotes(nextTopicDownvotes - 1)
+    onClick: () => setNextTopicDownvotes(nextTopicDownvotes + 1)
   }, /*#__PURE__*/_react.default.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     fill: "blue",
@@ -29888,6 +29885,8 @@ function PastTopics({
   pastTopics,
   setPastTopics
 }) {
+  console.log(setPastTopics);
+
   function handleDelete() {
     const id = pastTopic.id;
     setPastTopics(pastTopics.filter(past => past.id !== id));
@@ -30087,7 +30086,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64456" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49838" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
