@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    padding: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    background-color: rgb(100, 100, 205);
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+li {
+    list-style: none;
+}
+
+/*# sourceMappingURL=/react-tea-time-topic.9ad09f98.css.map */

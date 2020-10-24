@@ -4,8 +4,6 @@ import PastTopics from './PastTopics.js';
 
 export default function Main({ topics, setTopics}) {
 
-    console.log(topics);
-
     let nextTopics = topics.filter(topic => !topic.discussedOn);
     let pastTopics = topics.filter(topic => topic.discussedOn);
 
