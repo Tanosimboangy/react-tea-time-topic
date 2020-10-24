@@ -21,7 +21,7 @@ export default function Main({ topics}) {
                     <h2>NEXT TOPICS</h2>
                     {sortedNextTopics.map((nextTopic) => {
                         return (
-                            <NextTopics sortedNextTopics={sortedNextTopics}  key={nextTopic.id} nextTopic={nextTopic} />
+                            <NextTopics sortedNextTopics={sortedNextTopics} topics={topics} key={nextTopic.id} nextTopic={nextTopic} />
                         )
                     })}
                 </>

@@ -29802,15 +29802,28 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function NextTopics({
-  nextTopic
+  nextTopic,
+  topics
 }) {
   const [nextTopicUpvotes, setNextTopicUpvotes] = (0, _react.useState)(nextTopic.upvotes);
-  const [nextTopicDownvotes, setNextTopicDownvotes] = (0, _react.useState)(nextTopic.downvotes);
+  const [nextTopicDownvotes, setNextTopicDownvotes] = (0, _react.useState)(nextTopic.downvotes); // const [nextTopicArchive, setNextTopicArchive] = useState();
+
+  function handleArchive(e) {
+    const id = e.target.id;
+    let nextTopicId = nextTopic.find(el => el.id === id);
+    console.log(nextTopicId);
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "nexttopicContanier"
   }, /*#__PURE__*/_react.default.createElement("li", {
     className: "nexttopicText"
-  }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, nextTopic.title), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", null, /*#__PURE__*/_react.default.createElement("svg", {
+  }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, nextTopic.title), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: handleArchive,
+    id: nextTopic.id
+  }, /*#__PURE__*/_react.default.createElement("svg", {
+    onClick: handleArchive,
+    id: nextTopic.id,
     xmlns: "http://www.w3.org/2000/svg",
     border: "none",
     height: "24",
@@ -29898,28 +29911,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Form;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function Form() {
+  // const [addState, setAddState] = useState();
   return /*#__PURE__*/_react.default.createElement("form", {
-    style: {
-      display: 'flex',
-      flexDirection: 'row',
-      padding: '2rem',
-      backgroundColor: 'white',
-      borderRadius: '1rem'
-    }
+    className: "form"
   }, /*#__PURE__*/_react.default.createElement("input", {
-    style: {
-      width: '100%',
-      marginInlineEnd: '1rem',
-      backgroundColor: '#F2F7F5',
-      borderRadius: '5px',
-      border: 'none',
-      padding: '1rem'
-    },
     type: "text",
     placeholder: "ADD NEW TOPIC"
   }), /*#__PURE__*/_react.default.createElement("button", {
@@ -29959,6 +29961,7 @@ function Main({
   }, /*#__PURE__*/_react.default.createElement(_Form.default, null), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "NEXT TOPICS"), sortedNextTopics.map(nextTopic => {
     return /*#__PURE__*/_react.default.createElement(_NextTopics.default, {
       sortedNextTopics: sortedNextTopics,
+      topics: topics,
       key: nextTopic.id,
       nextTopic: nextTopic
     });
