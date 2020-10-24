@@ -29859,12 +29859,20 @@ function NextTopics({
     fill: "none"
   }), /*#__PURE__*/_react.default.createElement("path", {
     d: "M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-5.5l.92-4.65c.05-.22.02-.46-.08-.66-.23-.45-.52-.86-.88-1.22L14 2 7.59 8.41C7.21 8.79 7 9.3 7 9.83v7.84C7 18.95 8.05 20 9.34 20h8.11c.7 0 1.36-.37 1.72-.97l2.66-6.15z"
-  })))), /*#__PURE__*/_react.default.createElement("li", null, nextTopic.upvotes)), /*#__PURE__*/_react.default.createElement("ul", {
+  })))), /*#__PURE__*/_react.default.createElement("li", {
+    style: {
+      color: 'orangered'
+    }
+  }, nextTopic.upvotes)), /*#__PURE__*/_react.default.createElement("ul", {
     style: {
       display: 'flex',
       flexDirection: 'row'
     }
-  }, /*#__PURE__*/_react.default.createElement("li", null, nextTopic.downvotes), /*#__PURE__*/_react.default.createElement("li", {
+  }, /*#__PURE__*/_react.default.createElement("li", {
+    style: {
+      color: 'orangered'
+    }
+  }, nextTopic.downvotes), /*#__PURE__*/_react.default.createElement("li", {
     style: {
       marginLeft: '1rem'
     }
@@ -29882,42 +29890,55 @@ function NextTopics({
   })))))))));
 }
 },{"react":"node_modules/react/index.js"}],"components/PastTopics.js":[function(require,module,exports) {
-// import React from "react";
-// export default function PastTopics({ pastTopic }) {
-//     console.log(pastTopic);
-//     return (
-//         <>
-//             <h2>PAST TOPICS</h2>
-//             <div>
-//                 <ul>
-//                     <li>
-//                         <ul>
-//                             <li>{nextTopic}</li>
-//                             <li>{nextTopic}</li>
-//                         </ul>
-//                     </li>
-//                     <li>
-//                         <ul>
-//                             <li>
-//                                 <ul>
-//                                     <li></li>
-//                                     <li>{nextTopic}</li>
-//                                 </ul>
-//                             </li>
-//                             <li>
-//                                 <ul>
-//                                     <li>{nextTopic}</li>
-//                                     <li></li>
-//                                 </ul>
-//                             </li>
-//                         </ul>
-//                     </li>
-//                 </ul>
-//             </div>
-//         </>
-//     )
-// }
-},{}],"components/Main.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = PastTopics;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function PastTopics({
+  pastTopic
+}) {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '2rem',
+      backgroundColor: 'white',
+      marginBottom: '1rem',
+      borderRadius: '1rem'
+    }
+  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("ul", {
+    style: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingBottom: '1rem'
+    }
+  }, /*#__PURE__*/_react.default.createElement("li", null, pastTopic.title), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", null, /*#__PURE__*/_react.default.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: "24",
+    fill: "red",
+    viewBox: "0 0 24 24",
+    width: "24"
+  }, /*#__PURE__*/_react.default.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+  })))))), /*#__PURE__*/_react.default.createElement("li", {
+    style: {
+      textAlign: 'center',
+      color: 'orangered'
+    }
+  }, /*#__PURE__*/_react.default.createElement("p", null, pastTopic.discussedOn))));
+}
+},{"react":"node_modules/react/index.js"}],"components/Main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29938,16 +29959,21 @@ function Main({
   setTopics
 }) {
   let nextTopics = topics.filter(topic => !topic.discussedOn);
-  let pastTopics = topics.filter(topic => topic.discussedOn);
-  let sortedTopics = topics.sort((topicA, topicB) => {
-    const ratioA = topicA.upvotes - topicA.downvotes;
-    const ratioB = topicB.upvotes - topicB.downvotes;
-    return ratioB - ratioA;
-  });
+  let pastTopics = topics.filter(topic => topic.discussedOn); // let sortedTopics = topics.sort((topicA, topicB) => {
+  //     const ratioA = topicA.upvotes - topicA.downvotes;
+  //     const ratioB = topicB.upvotes - topicB.downvotes;
+  //     return ratioB - ratioA;
+  // });
+
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "NEXT TOPICS"), nextTopics.map(nextTopic => {
     return /*#__PURE__*/_react.default.createElement(_NextTopics.default, {
       key: nextTopic.id,
       nextTopic: nextTopic
+    });
+  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "PAST TOPICS"), pastTopics.map(pastTopic => {
+    return /*#__PURE__*/_react.default.createElement(_PastTopics.default, {
+      key: pastTopic.id,
+      pastTopic: pastTopic
     });
   })));
 }

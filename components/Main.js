@@ -2,16 +2,16 @@ import React from 'react';
 import NextTopics from './NextTopics.js';
 import PastTopics from './PastTopics.js';
 
-export default function Main({ topics, setTopics}) {
+export default function Main({ topics, setTopics}) { 
 
     let nextTopics = topics.filter(topic => !topic.discussedOn);
     let pastTopics = topics.filter(topic => topic.discussedOn);
 
-    let sortedTopics = topics.sort((topicA, topicB) => {
-        const ratioA = topicA.upvotes - topicA.downvotes;
-        const ratioB = topicB.upvotes - topicB.downvotes;
-        return ratioB - ratioA;
-	});
+    // let sortedTopics = topics.sort((topicA, topicB) => {
+    //     const ratioA = topicA.upvotes - topicA.downvotes;
+    //     const ratioB = topicB.upvotes - topicB.downvotes;
+    //     return ratioB - ratioA;
+	// });
 
     return (
             <div>
@@ -23,12 +23,14 @@ export default function Main({ topics, setTopics}) {
                         )
                     })}
                 </div>
-                {/* <div>
+                <div>
+                    <h2>PAST TOPICS</h2>
                     {pastTopics.map((pastTopic) => {
-                        <PastTopics key={pastTopic.id} pastTopic={pastTopic}/>
-                        })
-                    }
-                </div> */}
+                        return (
+                            <PastTopics  key={pastTopic.id} pastTopic={pastTopic} />
+                        )
+                    })}
+                </div>
             </div>
     )
 }
