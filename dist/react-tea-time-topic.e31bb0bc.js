@@ -29806,21 +29806,24 @@ function NextTopics({
   topics
 }) {
   const [nextTopicUpvotes, setNextTopicUpvotes] = (0, _react.useState)(nextTopic.upvotes);
-  const [nextTopicDownvotes, setNextTopicDownvotes] = (0, _react.useState)(nextTopic.downvotes); // const [nextTopicArchive, setNextTopicArchive] = useState();
-  // function handleArchive(e) {
-  //     const id = e.target.id;
-  //     // let nextTopicId = nextTopic.find(el => el.id === id);
-  // onClick={handleArchive}
-  // onClick={handleArchive}
-  // }
+  const [nextTopicDownvotes, setNextTopicDownvotes] = (0, _react.useState)(nextTopic.downvotes);
+  const [nextTopicArchive, setNextTopicArchive] = (0, _react.useState)();
 
-  console.log(nextTopic);
+  function handleArchive(e) {
+    const id = nextTopic.id;
+    console.log(id);
+    const newPastTopic = setNextTopicArchive(nextTopic.find(past => past.discussedOn === Date.now()));
+    console.log(newPastTopic); // let nextTopicId = nextTopic.find(el => el.id === id);
+    // onClick={handleArchive}
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "nexttopicContanier"
   }, /*#__PURE__*/_react.default.createElement("li", {
     className: "nexttopicText"
   }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, nextTopic.title), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
-    id: nextTopic.id
+    id: nextTopic.id,
+    onClick: handleArchive
   }, /*#__PURE__*/_react.default.createElement("svg", {
     id: nextTopic.id,
     xmlns: "http://www.w3.org/2000/svg",
@@ -29885,8 +29888,6 @@ function PastTopics({
   pastTopics,
   setPastTopics
 }) {
-  console.log(setPastTopics);
-
   function handleDelete() {
     const id = pastTopic.id;
     setPastTopics(pastTopics.filter(past => past.id !== id));
@@ -30037,7 +30038,7 @@ function App() {
   (0, _react.useEffect)(() => {
     setNextTopics(topics.filter(topic => topic.discussedOn !== ""));
   }, [topics]);
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement(_Main.default, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement(_Main.default, {
     topics: topics,
     setTopics: setTopics,
     pastTopics: pastTopics,
@@ -30086,7 +30087,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62242" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64456" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

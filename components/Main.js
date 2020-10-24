@@ -3,12 +3,7 @@ import NextTopics from './NextTopics.js';
 import PastTopics from './PastTopics.js';
 import Form from './Form';
 
-export default function Main({ 
-    topics, 
-    pastTopics,
-    setPastTopics,
-    nextTopics,
-    setNextTopics}) {  
+export default function Main({ topics, pastTopics, setPastTopics, nextTopics, setNextTopics}) {  
     let sortedNextTopics = nextTopics.sort((topicA, topicB) => {
         const ratioA = topicA.upvotes - topicA.downvotes;
         const ratioB = topicB.upvotes - topicB.downvotes;

@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function PastTopics({ pastTopic, pastTopics, setPastTopics }) {
-    console.log(setPastTopics);
+
     function handleDelete() {
         const id = pastTopic.id;
         setPastTopics(pastTopics.filter(past => past.id !== id))

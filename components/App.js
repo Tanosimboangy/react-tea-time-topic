@@ -31,7 +31,7 @@ export default function App() {
 
 
     return (
-        <div>
+        <>
             <Header />
             <main>
                 <Main 
@@ -43,7 +43,7 @@ export default function App() {
                     setNextTopics={setNextTopics}
                  />
             </main>
-        </div>
+        </>
 
     )
 }
