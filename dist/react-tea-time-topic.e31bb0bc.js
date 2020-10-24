@@ -29890,6 +29890,42 @@ function PastTopics({
     className: "discussedSing"
   }, /*#__PURE__*/_react.default.createElement("p", null, pastTopic.discussedOn))));
 }
+},{"react":"node_modules/react/index.js"}],"components/Form.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Form;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Form() {
+  return /*#__PURE__*/_react.default.createElement("form", {
+    style: {
+      display: 'flex',
+      flexDirection: 'row',
+      padding: '2rem',
+      backgroundColor: 'white',
+      borderRadius: '1rem'
+    }
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    style: {
+      width: '100%',
+      marginInlineEnd: '1rem',
+      backgroundColor: '#F2F7F5',
+      borderRadius: '5px',
+      border: 'none',
+      padding: '1rem'
+    },
+    type: "text",
+    placeholder: "ADD NEW TOPIC"
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "submit"
+  }, "Submit"));
+}
 },{"react":"node_modules/react/index.js"}],"components/Main.js":[function(require,module,exports) {
 "use strict";
 
@@ -29904,34 +29940,36 @@ var _NextTopics = _interopRequireDefault(require("./NextTopics.js"));
 
 var _PastTopics = _interopRequireDefault(require("./PastTopics.js"));
 
+var _Form = _interopRequireDefault(require("./Form"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Main({
-  topics,
-  setTopics
+  topics
 }) {
   let nextTopics = topics.filter(topic => !topic.discussedOn);
-  let pastTopics = topics.filter(topic => topic.discussedOn); // let sortedTopics = topics.sort((topicA, topicB) => {
-  //     const ratioA = topicA.upvotes - topicA.downvotes;
-  //     const ratioB = topicB.upvotes - topicB.downvotes;
-  //     return ratioB - ratioA;
-  // });
-
+  let pastTopics = topics.filter(topic => topic.discussedOn);
+  let sortedNextTopics = nextTopics.sort((topicA, topicB) => {
+    const ratioA = topicA.upvotes - topicA.downvotes;
+    const ratioB = topicB.upvotes - topicB.downvotes;
+    return ratioB - ratioA;
+  });
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "NEXT TOPICS"), nextTopics.map(nextTopic => {
+  }, /*#__PURE__*/_react.default.createElement(_Form.default, null), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "NEXT TOPICS"), sortedNextTopics.map(nextTopic => {
     return /*#__PURE__*/_react.default.createElement(_NextTopics.default, {
+      sortedNextTopics: sortedNextTopics,
       key: nextTopic.id,
       nextTopic: nextTopic
     });
-  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "PAST TOPICS"), pastTopics.map(pastTopic => {
+  })), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "PAST TOPICS"), pastTopics.map(pastTopic => {
     return /*#__PURE__*/_react.default.createElement(_PastTopics.default, {
       key: pastTopic.id,
       pastTopic: pastTopic
     });
   })));
 }
-},{"react":"node_modules/react/index.js","./NextTopics.js":"components/NextTopics.js","./PastTopics.js":"components/PastTopics.js"}],"components/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./NextTopics.js":"components/NextTopics.js","./PastTopics.js":"components/PastTopics.js","./Form":"components/Form.js"}],"components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
