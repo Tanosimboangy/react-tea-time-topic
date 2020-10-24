@@ -4,15 +4,17 @@ import PastTopics from './PastTopics.js';
 import Form from './Form';
 
 export default function Main({ topics}) { 
-
-    let nextTopics = topics.filter(topic => !topic.discussedOn);
     let pastTopics = topics.filter(topic => topic.discussedOn);
+    let nextTopics = topics.filter(topic => topic.discussedOn !== "");
 
     let sortedNextTopics = nextTopics.sort((topicA, topicB) => {
         const ratioA = topicA.upvotes - topicA.downvotes;
         const ratioB = topicB.upvotes - topicB.downvotes;
         return ratioB - ratioA;
-	});
+    });
+    
+    // useEffect(() => {
+    // }, [input])
 
     return (
             <div className="container">
