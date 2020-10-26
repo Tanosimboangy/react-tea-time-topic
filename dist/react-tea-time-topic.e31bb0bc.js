@@ -29806,15 +29806,16 @@ function NextTopics({
   topics
 }) {
   const [nextTopicUpvotes, setNextTopicUpvotes] = (0, _react.useState)(nextTopic.upvotes);
-  const [nextTopicDownvotes, setNextTopicDownvotes] = (0, _react.useState)(nextTopic.downvotes); // const [nextTopicArchive, setNextTopicArchive] = useState();
-  // function handleArchive(e) {
-  //     const id = e.target.id;
-  //     // let nextTopicId = nextTopic.find(el => el.id === id);
-  // onClick={handleArchive}
-  // onClick={handleArchive}
-  // }
+  const [nextTopicDownvotes, setNextTopicDownvotes] = (0, _react.useState)(nextTopic.downvotes);
 
-  console.log(nextTopic);
+  function handleIncrementUpvotes() {
+    setNextTopicUpvotes(prev => prev + 1);
+  }
+
+  function handleDecrementDownvotes() {
+    setNextTopicDownvotes(prev => prev + 1);
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "nexttopicContanier"
   }, /*#__PURE__*/_react.default.createElement("li", {
@@ -29837,7 +29838,7 @@ function NextTopics({
   })))))), /*#__PURE__*/_react.default.createElement("li", {
     className: "nexttopicVotes"
   }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
-    onClick: () => setNextTopicUpvotes(nextTopicUpvotes + 1)
+    onClick: handleIncrementUpvotes
   }, /*#__PURE__*/_react.default.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     height: "24",
@@ -29854,7 +29855,7 @@ function NextTopics({
       marginLeft: '1rem'
     }
   }, /*#__PURE__*/_react.default.createElement("button", {
-    onClick: () => setNextTopicDownvotes(nextTopicDownvotes + 1)
+    onClick: handleDecrementDownvotes
   }, /*#__PURE__*/_react.default.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     fill: "blue",
@@ -30086,7 +30087,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49838" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49881" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
