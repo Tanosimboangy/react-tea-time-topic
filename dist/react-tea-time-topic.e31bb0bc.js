@@ -29803,18 +29803,26 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function NextTopics({
   nextTopic,
-  topics
+  topics,
+  setTopics
 }) {
   const [nextTopicUpvotes, setNextTopicUpvotes] = (0, _react.useState)(nextTopic.upvotes);
   const [nextTopicDownvotes, setNextTopicDownvotes] = (0, _react.useState)(nextTopic.downvotes);
 
-  function handleIncrementUpvotes() {
-    setNextTopicUpvotes(prev => prev + 1);
-  }
+  const handleIncrementUpvotes = e => {
+    setNextTopicUpvotes(nextTopic.upvotes++);
+  };
 
-  function handleDecrementDownvotes() {
-    setNextTopicDownvotes(prev => prev + 1);
-  }
+  const handleIncrementDownvotes = e => {
+    setNextTopicDownvotes(nextTopic.downvotes++);
+  }; // const handleArchive = (e) => {
+  //     const id = e.currentTarget.id; 
+  //     const topicArchive = topics.find(topic => topic.id === id || topic.id == id );
+  //     topicArchive.discussedOn = Date.now();
+  //     topics.push(topicArchive)
+  //     setTopics([...topics])
+  // }; 
+
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "nexttopicContanier"
@@ -29838,6 +29846,7 @@ function NextTopics({
   })))))), /*#__PURE__*/_react.default.createElement("li", {
     className: "nexttopicVotes"
   }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
+    id: nextTopic.id,
     onClick: handleIncrementUpvotes
   }, /*#__PURE__*/_react.default.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -29855,7 +29864,7 @@ function NextTopics({
       marginLeft: '1rem'
     }
   }, /*#__PURE__*/_react.default.createElement("button", {
-    onClick: handleDecrementDownvotes
+    onClick: handleIncrementDownvotes
   }, /*#__PURE__*/_react.default.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     fill: "blue",
@@ -29886,8 +29895,6 @@ function PastTopics({
   pastTopics,
   setPastTopics
 }) {
-  console.log(setPastTopics);
-
   function handleDelete() {
     const id = pastTopic.id;
     setPastTopics(pastTopics.filter(past => past.id !== id));
@@ -29927,20 +29934,37 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Form() {
-  // const [addState, setAddState] = useState();
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
-
+function Form({
+  topics,
+  setTopics
+}) {
+  // const [addState, setTopics] = useState([]);
+  // const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     let newTopic = createNewTopic(e.currentTarget.topic.value);
+  //     // console.log(newTopic);
+  //     // topics.push(newTopic);
+  //     // setTopics([...topics]) 
+  //     // e.currentTarget.topic.value="";
+  // };
+  // const createNewTopic = title => {
+  //     return {
+  //         upvotes: 0,
+  //         downvotes: 0,
+  //         disussedOn: '',
+  //         title: title,
+  //         id: Date.now(),
+  //     };
+  // };
   return /*#__PURE__*/_react.default.createElement("form", {
     className: "form"
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    placeholder: "ADD NEW TOPIC"
+    placeholder: "ADD NEW TOPIC",
+    required: true,
+    name: "topic"
   }), /*#__PURE__*/_react.default.createElement("button", {
-    type: "submit",
-    onChange: handleSubmit
+    type: "submit"
   }, "Submit"));
 }
 },{"react":"node_modules/react/index.js"}],"components/Main.js":[function(require,module,exports) {
@@ -29963,6 +29987,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Main({
   topics,
+  setTopics,
   pastTopics,
   setPastTopics,
   nextTopics,
@@ -29972,15 +29997,17 @@ function Main({
     const ratioA = topicA.upvotes - topicA.downvotes;
     const ratioB = topicB.upvotes - topicB.downvotes;
     return ratioB - ratioA;
-  }); // useEffect(() => {
-  // }, [input])
-
+  });
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/_react.default.createElement(_Form.default, null), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "NEXT TOPICS"), sortedNextTopics.map(nextTopic => {
+  }, /*#__PURE__*/_react.default.createElement(_Form.default, {
+    topics: topics,
+    setTopics: setTopics
+  }), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "NEXT TOPICS"), sortedNextTopics.map(nextTopic => {
     return /*#__PURE__*/_react.default.createElement(_NextTopics.default, {
       sortedNextTopics: sortedNextTopics,
       topics: topics,
+      setTopics: setTopics,
       key: nextTopic.id,
       nextTopic: nextTopic
     });
@@ -30087,7 +30114,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49881" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57026" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
