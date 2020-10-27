@@ -5,6 +5,7 @@ export default function PastTopics({ pastTopic, pastTopics, setPastTopics }) {
         const id = pastTopic.id;
         setPastTopics(pastTopics.filter(past => past.id !== id))
     }
+    const discussedOnDate = new Date(Number(pastTopic.discussedOn));
     return (
         <>
             <ul className="pastTopicContainer">
@@ -19,9 +20,7 @@ export default function PastTopics({ pastTopic, pastTopics, setPastTopics }) {
                     </ul>
                 </li>
                 <li className="discussedSing">
-                    <p>
-                        {pastTopic.discussedOn}
-                    </p>
+                    <p>Discussed on {discussedOnDate.toLocaleDateString()}</p>
                 </li>
             </ul>
         </>

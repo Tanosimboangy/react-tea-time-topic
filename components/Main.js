@@ -9,7 +9,6 @@ export default function Main({ topics, setTopics, pastTopics, setPastTopics, nex
         const ratioB = topicB.upvotes - topicB.downvotes;
         return ratioB - ratioA;
     });
-
     return (
             <div className="container">
                 <Form topics={topics} setTopics={setTopics} />

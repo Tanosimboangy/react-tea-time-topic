@@ -29819,12 +29819,20 @@ function NextTopics({
     setTopics([...topics]);
   }
 
+  function handleArchive(e) {
+    const id = e.target.id;
+    const topicMoveToArchive = topics.find(topic => topic.id == id);
+    topicMoveToArchive.discussedOn = Date.now();
+    setTopics([...topics]);
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "nexttopicContanier"
   }, /*#__PURE__*/_react.default.createElement("li", {
     className: "nexttopicText"
   }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, nextTopic.title), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
-    id: nextTopic.id
+    id: nextTopic.id,
+    onClick: handleArchive
   }, /*#__PURE__*/_react.default.createElement("svg", {
     id: nextTopic.id,
     xmlns: "http://www.w3.org/2000/svg",
@@ -29901,6 +29909,7 @@ function PastTopics({
     setPastTopics(pastTopics.filter(past => past.id !== id));
   }
 
+  const discussedOnDate = new Date(Number(pastTopic.discussedOn));
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "pastTopicContainer"
   }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("ul", {
@@ -29921,7 +29930,7 @@ function PastTopics({
     d: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
   })))))), /*#__PURE__*/_react.default.createElement("li", {
     className: "discussedSing"
-  }, /*#__PURE__*/_react.default.createElement("p", null, pastTopic.discussedOn))));
+  }, /*#__PURE__*/_react.default.createElement("p", null, "Discussed on ", discussedOnDate.toLocaleDateString()))));
 }
 },{"react":"node_modules/react/index.js"}],"components/Form.js":[function(require,module,exports) {
 "use strict";
