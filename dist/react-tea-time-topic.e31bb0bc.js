@@ -29939,26 +29939,27 @@ function Form({
   topics,
   setTopics
 }) {
-  // const [addState, setTopics] = useState([]);
-  // const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     let newTopic = createNewTopic(e.currentTarget.topic.value);
-  //     // console.log(newTopic);
-  //     // topics.push(newTopic);
-  //     // setTopics([...topics]) 
-  //     // e.currentTarget.topic.value="";
-  // };
-  // const createNewTopic = title => {
-  //     return {
-  //         upvotes: 0,
-  //         downvotes: 0,
-  //         disussedOn: '',
-  //         title: title,
-  //         id: Date.now(),
-  //     };
-  // };
+  const handleSubmit = e => {
+    e.preventDefault();
+    let newTopic = newOtherTopic(e.currentTarget.topic.value);
+    topics.push(newTopic);
+    setTopics([...topics]);
+    e.currentTarget.topic.value = "";
+  };
+
+  const newOtherTopic = title => {
+    return {
+      upvotes: 0,
+      downvotes: 0,
+      disussedOn: '',
+      title: title,
+      id: Date.now()
+    };
+  };
+
   return /*#__PURE__*/_react.default.createElement("form", {
-    className: "form"
+    className: "form",
+    onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     placeholder: "ADD NEW TOPIC",
