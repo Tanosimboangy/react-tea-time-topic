@@ -29809,20 +29809,15 @@ function NextTopics({
   const [nextTopicUpvotes, setNextTopicUpvotes] = (0, _react.useState)(nextTopic.upvotes);
   const [nextTopicDownvotes, setNextTopicDownvotes] = (0, _react.useState)(nextTopic.downvotes);
 
-  const handleIncrementUpvotes = e => {
+  function handleIncrementUpvotes(e) {
     setNextTopicUpvotes(nextTopic.upvotes++);
-  };
+    setTopics([...topics]);
+  }
 
-  const handleIncrementDownvotes = e => {
+  function handleIncrementDownvotes(e) {
     setNextTopicDownvotes(nextTopic.downvotes++);
-  }; // const handleArchive = (e) => {
-  //     const id = e.currentTarget.id; 
-  //     const topicArchive = topics.find(topic => topic.id === id || topic.id == id );
-  //     topicArchive.discussedOn = Date.now();
-  //     topics.push(topicArchive)
-  //     setTopics([...topics])
-  // }; 
-
+    setTopics([...topics]);
+  }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "nexttopicContanier"
@@ -29877,7 +29872,13 @@ function NextTopics({
   }), /*#__PURE__*/_react.default.createElement("path", {
     d: "M22 4h-2c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h2V4zM2.17 11.12c-.11.25-.17.52-.17.8V13c0 1.1.9 2 2 2h5.5l-.92 4.65c-.05.22-.02.46.08.66.23.45.52.86.88 1.22L10 22l6.41-6.41c.38-.38.59-.89.59-1.42V6.34C17 5.05 15.95 4 14.66 4h-8.1c-.71 0-1.36.37-1.72.97l-2.67 6.15z"
   }))))))))));
-}
+} // const handleArchive = (e) => {
+//     const id = e.currentTarget.id; 
+//     const topicArchive = topics.find(topic => topic.id === id || topic.id == id );
+//     topicArchive.discussedOn = Date.now();
+//     topics.push(topicArchive)
+//     setTopics([...topics])
+// };
 },{"react":"node_modules/react/index.js"}],"components/PastTopics.js":[function(require,module,exports) {
 "use strict";
 
@@ -30114,7 +30115,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57026" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50480" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

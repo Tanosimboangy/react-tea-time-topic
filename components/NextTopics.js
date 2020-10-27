@@ -1,27 +1,18 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 export default function NextTopics({ nextTopic, topics, setTopics }) {
 
     const [nextTopicUpvotes, setNextTopicUpvotes] = useState(nextTopic.upvotes);
     const [nextTopicDownvotes, setNextTopicDownvotes] = useState(nextTopic.downvotes);
-
-    const handleIncrementUpvotes = (e) => {
+   
+    function handleIncrementUpvotes(e) {
         setNextTopicUpvotes(nextTopic.upvotes++);
-    };
-
-    const handleIncrementDownvotes = (e) => {
+        setTopics([...topics]);
+      }
+    function handleIncrementDownvotes(e) {
         setNextTopicDownvotes(nextTopic.downvotes++);
-    };
-
-
-    // const handleArchive = (e) => {
-    //     const id = e.currentTarget.id; 
-    //     const topicArchive = topics.find(topic => topic.id === id || topic.id == id );
-    //     topicArchive.discussedOn = Date.now();
-    //     topics.push(topicArchive)
-    //     setTopics([...topics])
-    // }; 
-
+        setTopics([...topics]);
+      }
 
     return (
         <>
@@ -64,3 +55,11 @@ export default function NextTopics({ nextTopic, topics, setTopics }) {
         </>
     )
 }
+
+// const handleArchive = (e) => {
+    //     const id = e.currentTarget.id; 
+    //     const topicArchive = topics.find(topic => topic.id === id || topic.id == id );
+    //     topicArchive.discussedOn = Date.now();
+    //     topics.push(topicArchive)
+    //     setTopics([...topics])
+    // }; 
