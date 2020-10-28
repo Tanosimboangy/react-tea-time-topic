@@ -29819,10 +29819,8 @@ function NextTopics({
     setTopics([...topics]);
   }
 
-  function handleArchive(e) {
-    const id = e.target.id;
-    const topicMoveToArchive = topics.find(topic => topic.id == id);
-    topicMoveToArchive.discussedOn = Date.now();
+  function handleArchive() {
+    nextTopic.discussedOn = Date.now();
     setTopics([...topics]);
   }
 
@@ -29831,6 +29829,7 @@ function NextTopics({
   }, /*#__PURE__*/_react.default.createElement("li", {
     className: "nexttopicText"
   }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, nextTopic.title), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
     id: nextTopic.id,
     onClick: handleArchive
   }, /*#__PURE__*/_react.default.createElement("svg", {
@@ -29849,6 +29848,7 @@ function NextTopics({
   })))))), /*#__PURE__*/_react.default.createElement("li", {
     className: "nexttopicVotes"
   }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
+    button: "button",
     id: nextTopic.id,
     onClick: handleIncrementUpvotes
   }, /*#__PURE__*/_react.default.createElement("svg", {
@@ -29867,6 +29867,7 @@ function NextTopics({
       marginLeft: '1rem'
     }
   }, /*#__PURE__*/_react.default.createElement("button", {
+    button: "button",
     onClick: handleIncrementDownvotes
   }, /*#__PURE__*/_react.default.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -30071,10 +30072,10 @@ function App() {
     getTopics();
   }, []);
   (0, _react.useEffect)(() => {
-    setPastTopics(topics.filter(topic => topic.discussedOn === ""));
+    setNextTopics(topics.filter(topic => topic.discussedOn === ""));
   }, [topics]);
   (0, _react.useEffect)(() => {
-    setNextTopics(topics.filter(topic => topic.discussedOn !== ""));
+    setPastTopics(topics.filter(topic => topic.discussedOn !== ""));
   }, [topics]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement(_Main.default, {
     topics: topics,
@@ -30125,7 +30126,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50480" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58013" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -22,13 +22,12 @@ export default function App() {
     }, [])
 
     useEffect(() => {
-            setPastTopics(topics.filter(topic => topic.discussedOn === ""))
+        setNextTopics(topics.filter(topic => topic.discussedOn === ""))
     }, [topics])
 
     useEffect (() => {
-        setNextTopics(topics.filter(topic => topic.discussedOn !== ""))
+        setPastTopics(topics.filter(topic => topic.discussedOn !== ""))
     }, [topics])
-
 
     return (
         <>
