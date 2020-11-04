@@ -4,7 +4,7 @@ export default function Form({topics, setTopics}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let newTopic = newOtherTopic(e.currentTarget.topic.value);
+        let newTopic = newOtherTopic(e.target.topic.value);
         topics.push(newTopic);
         setTopics([...topics]) 
         e.currentTarget.topic.value="";
@@ -14,7 +14,7 @@ export default function Form({topics, setTopics}) {
         return {
             upvotes: 0,
             downvotes: 0,
-            disussedOn: '',
+            discussedOn: "",
             title: title,
             id: Date.now(),
         };

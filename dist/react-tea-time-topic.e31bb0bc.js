@@ -29951,7 +29951,7 @@ function Form({
 }) {
   const handleSubmit = e => {
     e.preventDefault();
-    let newTopic = newOtherTopic(e.currentTarget.topic.value);
+    let newTopic = newOtherTopic(e.target.topic.value);
     topics.push(newTopic);
     setTopics([...topics]);
     e.currentTarget.topic.value = "";
@@ -29961,7 +29961,7 @@ function Form({
     return {
       upvotes: 0,
       downvotes: 0,
-      disussedOn: '',
+      discussedOn: "",
       title: title,
       id: Date.now()
     };
@@ -30126,7 +30126,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58013" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64895" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
